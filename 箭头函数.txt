@@ -1,0 +1,23 @@
+this在箭头函数中被绑定，4种绑定规则中的无论哪种都无法改变其绑定、
+
+var a = 0；
+
+function  foo (){
+var test = () =>{
+console.log(this.a);
+
+}
+return test;
+};
+
+
+var obj2 = {
+a:2,
+foo:foo
+}
+obj1.foo()();  //1
+var bar = foo.call(obj1);
+
+//由于上一条语句已经把this绑定到obj1上，且无法修改。所以本条语句call（obj2）无效，返回的值是obj1.a的值
+
+bar.call(obj2);//1
